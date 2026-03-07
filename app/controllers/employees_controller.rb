@@ -5,6 +5,10 @@ class EmployeesController < ApplicationController
     @employees = Employee.all
   end
 
+  def admin
+    @employees = Employee.all
+  end
+
   def show; end
 
   def new

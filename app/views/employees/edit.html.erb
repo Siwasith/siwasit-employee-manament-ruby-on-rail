@@ -1,6 +1,42 @@
-<h1>แก้ไขข้อมูลพนักงาน</h1>
+<div class="w-full max-w-6xl">
+  <div class="mb-8">
+    <h1 class="text-4xl font-extrabold tracking-tight text-slate-800">แก้ไขข้อมูลพนักงาน</h1>
+    <p class="text-slate-500 mt-2">อัปเดตข้อมูลพนักงานของคุณ</p>
+  </div>
 
-<%= render "form" %>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <!-- Form Section -->
+    <div>
+      <div class="bg-white border-l-4 shadow-md p-8" style="border-color: #829CBC;">
+        <h2 class="text-2xl font-bold text-slate-800 mb-6">แก้ไขข้อมูล</h2>
+        <%= render "form" %>
+      </div>
+      <div class="mt-6">
+        <%= link_to "← กลับไปหน้ารายชื่อ", employees_path, class: "text-slate-600 hover:text-slate-800 font-medium" %>
+      </div>
+    </div>
 
-<br>
-<%= link_to "กลับไปหน้ารายชื่อ", employees_path %>
+    <!-- Preview Section -->
+    <div>
+      <div class="sticky top-24">
+        <div class="bg-white border-l-4 shadow-md p-8" style="border-color: #829CBC;">
+          <h2 class="text-2xl font-bold text-slate-800 mb-6">ตัวอย่างผล</h2>
+          <div class="space-y-6">
+            <div class="pb-4 border-b border-slate-200">
+              <p class="text-xs uppercase tracking-widest text-slate-500 font-semibold">ชื่อ</p>
+              <p class="text-2xl font-bold text-slate-800 mt-3"><%= @employee.name %></p>
+            </div>
+            <div class="pb-4 border-b border-slate-200">
+              <p class="text-xs uppercase tracking-widest text-slate-500 font-semibold">ตำแหน่ง</p>
+              <p class="text-lg font-semibold text-slate-700 mt-3"><%= @employee.position %></p>
+            </div>
+            <div>
+              <p class="text-xs uppercase tracking-widest text-slate-500 font-semibold">เงินเดือน</p>
+              <p class="text-2xl font-bold mt-3" style="color: #829CBC;"><%= number_to_currency(@employee.salary.to_i, unit: "฿") %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

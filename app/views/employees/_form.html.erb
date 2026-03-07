@@ -2,21 +2,28 @@
               method: (@employee.persisted? ? :patch : :post),
               scope: :employee do |f| %>
 
-  <div>
-    <label>ชื่อ:</label><br>
-    <%= f.text_field :name, value: @employee.name %>
+  <div class="form-control w-full mb-6">
+    <%= f.label :name, "ชื่อ", class: "label font-semibold text-slate-700" %>
+    <label class="input input-bordered bg-white flex items-center gap-2 focus-within:ring-2 focus-within:ring-blue-200">
+      <%= f.text_field :name, value: @employee.name, placeholder: "กรอกชื่อ", class: "grow" %>
+    </label>
   </div>
 
-  <div>
-    <label>ตำแหน่ง:</label><br>
-    <%= f.text_field :position, value: @employee.position %>
+  <div class="form-control w-full mb-6">
+    <%= f.label :position, "ตำแหน่ง", class: "label font-semibold text-slate-700" %>
+    <label class="input input-bordered bg-white flex items-center gap-2 focus-within:ring-2 focus-within:ring-indigo-200">
+      <%= f.text_field :position, value: @employee.position, placeholder: "กรอกตำแหน่ง", class: "grow" %>
+    </label>
   </div>
 
-  <div>
-    <label>เงินเดือน:</label><br>
-    <%= f.number_field :salary, value: @employee.salary %>
+  <div class="form-control w-full mb-8">
+    <%= f.label :salary, "เงินเดือน", class: "label font-semibold text-slate-700" %>
+    <label class="input input-bordered bg-white flex items-center gap-2 focus-within:ring-2 focus-within:ring-emerald-200">
+      <span>฿</span>
+      <%= f.number_field :salary, value: @employee.salary, placeholder: "0", class: "grow" %>
+    </label>
   </div>
-
-  <br>
-  <%= f.submit %>
+  <button type="submit" class="btn w-full btn-success">
+    <%= @employee.persisted? ? 'อัปเดต' : 'บันทึก' %>
+  </button>
 <% end %>

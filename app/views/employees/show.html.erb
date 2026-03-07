@@ -1,9 +1,58 @@
-<h1>ข้อมูลพนักงาน</h1>
+<div class="w-full">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+    <!-- Main Content -->
+    <div class="lg:col-span-2">
+      <h1 class="text-4xl font-extrabold tracking-tight text-slate-800 mb-8">ข้อมูลพนักงาน</h1>
+      <div class="card bg-white shadow-md border border-slate-200">
+        <div class="card-body space-y-6 p-8">
+          <div>
+            <p class="text-xs uppercase tracking-wide text-slate-500">ชื่อ</p>
+            <p class="text-3xl font-bold text-slate-800 mt-1"><%= @employee.name %></p>
+          </div>
+          <div>
+            <p class="text-xs uppercase tracking-wide text-slate-500">ตำแหน่ง</p>
+            <p class="text-2xl font-bold text-slate-800 mt-1"><%= @employee.position %></p>
+          </div>
+          <div>
+            <p class="text-xs uppercase tracking-wide text-slate-500">เงินเดือน</p>
+            <p class="text-3xl font-bold text-emerald-700 mt-1"><%= number_to_currency(@employee.salary.to_i, unit: "฿") %></p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-6">
+        <%= link_to "กลับไปหน้ารายชื่อ", employees_path, class: "link link-primary" %>
+      </div>
+    </div>
 
-<p><strong>ชื่อ:</strong> <%= @employee.name %></p>
-<p><strong>ตำแหน่ง:</strong> <%= @employee.position %></p>
-<p><strong>เงินเดือน:</strong> <%= @employee.salary %></p>
+    <!-- Sidebar -->
+    <div class="lg:col-span-1">
+      <div class="sticky top-24">
+        <div class="card bg-gradient-to-br from-blue-50 to-indigo-50 shadow-md border border-blue-200">
+          <div class="card-body">
+            <h2 class="card-title text-lg text-slate-800 mb-4">การดำเนินการ</h2>
+            <div class="space-y-3">
+              <%= link_to "แก้ไขข้อมูล", edit_employee_path(@employee), class: "btn btn-warning w-full" %>
+              <%= link_to "ลบพนักงาน", employee_path(@employee), data: { turbo_method: :delete, turbo_confirm: "ยืนยันการลบ?" }, class: "btn btn-error w-full" %>
+            </div>
+          </div>
+        </div>
 
-<br>
-<%= link_to "แก้ไข", edit_employee_path(@employee) %> |
-<%= link_to "กลับไปหน้ารายชื่อ", employees_path %>
+        <div class="card bg-white shadow-md border border-slate-200 mt-4">
+          <div class="card-body">
+            <h3 class="font-semibold text-slate-800 mb-3">ข้อมูลอื่น ๆ</h3>
+            <div class="space-y-3 text-sm">
+              <div>
+                <p class="text-xs text-slate-500 mb-1">เพิ่มเมื่อ</p>
+                <p class="text-slate-700 font-medium"><%= @employee.created_at.strftime("%d %B %Y") if @employee.created_at %></p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-500 mb-1">แก้ไขล่าสุด</p>
+                <p class="text-slate-700 font-medium"><%= @employee.updated_at.strftime("%d %B %Y") if @employee.updated_at %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

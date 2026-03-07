@@ -1,8 +1,56 @@
 [
   {
     "id": 1,
+    "name": "สมชาย ใจดี",
+    "position": "Software Engineer",
+    "salary": "55000"
+  },
+  {
+    "id": 2,
+    "name": "สมหญิง รักงาน",
+    "position": "Product Manager",
+    "salary": "70000"
+  },
+  {
+    "id": 3,
+    "name": "วิชัย มานะ",
+    "position": "UX Designer",
+    "salary": "48000"
+  },
+  {
+    "id": 4,
+    "name": "นภา สดใส",
+    "position": "QA Engineer",
+    "salary": "45000"
+  },
+  {
+    "id": 5,
+    "name": "ธนากร เก่งมาก",
+    "position": "DevOps Engineer",
+    "salary": "65000"
+  },
+  {
+    "id": 6,
+    "name": "Test",
+    "position": "Test",
+    "salary": "123"
+  },
+  {
+    "id": 7,
     "name": "13",
     "position": "123",
+    "salary": "222"
+  },
+  {
+    "id": 8,
+    "name": "123",
+    "position": "123",
     "salary": "123"
+  },
+  {
+    "id": 9,
+    "name": "",
+    "position": "",
+    "salary": ""
   }
 ]

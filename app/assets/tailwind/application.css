@@ -1,0 +1,15 @@
+@import "https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css";
+@import "tailwindcss";
+
+@layer components {
+  .btn-green {
+    @apply btn shadow hover:shadow-md transition text-white;
+    background-color: #22c55e !important;
+    border-color: #22c55e !important;
+  }
+  
+  .btn-green:hover {
+    background-color: #16a34a !important;
+    border-color: #16a34a !important;
+  }
+}

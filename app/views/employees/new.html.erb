@@ -1,6 +1,12 @@
-<h1>เพิ่มพนักงานใหม่</h1>
+<div class="w-full max-w-2xl">
+  <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-800 mb-2">เพิ่มพนักงานใหม่</h1>
+  <p class="text-slate-500 mb-8">เพิ่มข้อมูลพนักงานใหม่ลงภายกลาว</p>
 
-<%= render "form" %>
+  <div class="bg-white border-l-4 shadow-md p-8" style="border-color: #829CBC;">
+    <%= render "form" %>
+  </div>
 
-<br>
-<%= link_to "กลับไปหน้ารายชื่อ", employees_path %>
+  <div class="mt-6">
+    <%= link_to "← กลับไปหน้ารายชื่อ", employees_path, class: "text-slate-600 hover:text-slate-800 font-medium" %>
+  </div>
+</div>

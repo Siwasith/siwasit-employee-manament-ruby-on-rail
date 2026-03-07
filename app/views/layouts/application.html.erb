@@ -22,7 +22,41 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body data-theme="light" class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div class="navbar bg-white shadow-md border-b border-slate-200">
+      <div class="flex-1">
+        <%= link_to "Employee Management", root_path, class: "btn btn-ghost text-xl text-blue-700 font-bold" %>
+      </div>
+    </div>
+
+    <div class="flex h-screen overflow-hidden">
+      <!-- Sidebar -->
+      <div class="w-64 bg-white border-r border-slate-200 shadow-sm hidden lg:block">
+        <div class="p-6">
+          <nav class="space-y-2">
+            <%= link_to employees_path, class: "flex items-center gap-3 px-4 py-3 rounded-lg #{current_page?(employees_path) ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-slate-600 hover:bg-slate-50'}" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72h-7.5v-1.08h7.5v1.08zM9 6.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm-6 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+              </svg>
+              <span>รายชื่อพนักงาน</span>
+            <% end %>
+
+            <%= link_to admin_employees_path, class: "flex items-center gap-3 px-4 py-3 rounded-lg #{current_page?(admin_employees_path) ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-slate-600 hover:bg-slate-50'}" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+              <span>จัดการพนักงาน</span>
+            <% end %>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <main class="flex-1 overflow-auto px-4 py-10">
+        <div class="flex justify-center">
+          <%= yield %>
+        </div>
+      </main>
+    </div>
   </body>
 </html>
