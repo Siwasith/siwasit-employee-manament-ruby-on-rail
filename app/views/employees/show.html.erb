@@ -1,0 +1,9 @@
+<h1>ข้อมูลพนักงาน</h1>
+
+<p><strong>ชื่อ:</strong> <%= @employee.name %></p>
+<p><strong>ตำแหน่ง:</strong> <%= @employee.position %></p>
+<p><strong>เงินเดือน:</strong> <%= @employee.salary %></p>
+
+<br>
+<%= link_to "แก้ไข", edit_employee_path(@employee) %> |
+<%= link_to "กลับไปหน้ารายชื่อ", employees_path %>

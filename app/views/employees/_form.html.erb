@@ -1,0 +1,22 @@
+<%= form_with url: (@employee.persisted? ? employee_path(@employee) : employees_path),
+              method: (@employee.persisted? ? :patch : :post),
+              scope: :employee do |f| %>
+
+  <div>
+    <label>ชื่อ:</label><br>
+    <%= f.text_field :name, value: @employee.name %>
+  </div>
+
+  <div>
+    <label>ตำแหน่ง:</label><br>
+    <%= f.text_field :position, value: @employee.position %>
+  </div>
+
+  <div>
+    <label>เงินเดือน:</label><br>
+    <%= f.number_field :salary, value: @employee.salary %>
+  </div>
+
+  <br>
+  <%= f.submit %>
+<% end %>

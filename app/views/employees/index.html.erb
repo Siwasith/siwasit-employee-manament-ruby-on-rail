@@ -1,0 +1,33 @@
+<h1>รายชื่อพนักงาน</h1>
+
+<% if notice %>
+  <p style="color: green;"><%= notice %></p>
+<% end %>
+
+<table border="1" cellpadding="8">
+  <thead>
+    <tr>
+      <th>ชื่อ</th>
+      <th>ตำแหน่ง</th>
+      <th>เงินเดือน</th>
+      <th>การจัดการ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.name %></td>
+        <td><%= employee.position %></td>
+        <td><%= employee.salary %></td>
+        <td>
+          <%= link_to "ดู", employee_path(employee) %> |
+          <%= link_to "แก้ไข", edit_employee_path(employee) %> |
+          <%= link_to "ลบ", employee_path(employee), data: { turbo_method: :delete, turbo_confirm: "ยืนยันการลบ?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to "เพิ่มพนักงานใหม่", new_employee_path %>
