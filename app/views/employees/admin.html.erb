@@ -25,13 +25,13 @@
       </thead>
       <tbody>
         <% @employees.each_with_index do |employee, index| %>
-          <tr class="<%= index.even? ? 'bg-white' : 'bg-slate-50' %> border-b border-slate-200 hover:bg-slate-100 transition">
+          <tr class="<%= index.even? ? 'bg-white' : 'bg-slate-50' %> border-b border-slate-200 hover:bg-slate-100 transition" data-employee-id="<%= employee.id %>">
             <td class="px-6 py-4 text-sm font-medium text-slate-800"><%= employee.name %></td>
             <td class="px-6 py-4 text-sm text-slate-700"><%= employee.position %></td>
             <td class="px-6 py-4 text-sm font-semibold text-emerald-700"><%= number_to_currency(employee.salary.to_i, unit: "฿") %></td>
             <td class="px-6 py-4 text-sm flex gap-2">
               <%= link_to "แก้ไข", edit_employee_path(employee), class: "btn btn-sm text-white" %>
-              <%= link_to "ลบ", employee_path(employee), data: { turbo_method: :delete, turbo_confirm: "ยืนยันการลบ?" }, class: "btn btn-sm btn-error" %>
+              <button type="button" class="btn btn-sm btn-error delete-btn" data-id="<%= employee.id %>">ลบ</button>
             </td>
           </tr>
         <% end %>
@@ -46,3 +46,37 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  document.addEventListener('click', async (e) => {
+    if (e.target.classList.contains('delete-btn')) {
+      const id = e.target.dataset.id;
+      if (!id || isNaN(id)) {
+        alert('ไม่พบรหัสพนักงาน');
+        return;
+      }
+      
+      if (!confirm('คุณแน่ใจว่าต้องการลบพนักงานคนนี้หรือไม่?')) {
+        return;
+      }
+      
+      try {
+        const response = await fetch(`/employees/${id}`, {
+          method: 'DELETE',
+          headers: {
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+          }
+        });
+        
+        if (response.ok) {
+          window.location.href = '/employees/admin';
+        } else {
+          alert('เกิดข้อผิดพลาด');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('เกิดข้อผิดพลาด');
+      }
+    }
+  });
+</script>

@@ -22,15 +22,26 @@ class Employee
   end
 
   def self.create(attrs)
-    employees = JSON.parse(File.read(DB_PATH))
-    new_id = (employees.map { |e| e["id"] }.max || 0) + 1
-    record = { "id" => new_id, "name" => attrs[:name], "position" => attrs[:position], "salary" => attrs[:salary] }
-    employees << record
-    File.write(DB_PATH, JSON.pretty_generate(employees))
-    new(record)
+    employee = new(attrs)
+    employee.save
+    employee
   end
 
   # ---- Instance methods ----
+
+  def save
+    if @id.present?
+      update(name: @name, position: @position, salary: @salary)
+    else
+      employees = JSON.parse(File.read(DB_PATH))
+      new_id = (employees.map { |e| e["id"] }.max || 0) + 1
+      @id = new_id
+      record = { "id" => new_id, "name" => @name, "position" => @position, "salary" => @salary }
+      employees << record
+      File.write(DB_PATH, JSON.pretty_generate(employees))
+      true
+    end
+  end
 
   def update(attrs)
     employees = JSON.parse(File.read(DB_PATH))
@@ -57,5 +68,18 @@ class Employee
 
   def to_param
     @id.to_s
+  end
+
+  def to_h
+    {
+      id: @id,
+      name: @name,
+      position: @position,
+      salary: @salary
+    }
+  end
+
+  def as_json(options = {})
+    to_h
   end
 end

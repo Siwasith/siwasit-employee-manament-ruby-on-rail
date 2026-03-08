@@ -1,11 +1,5 @@
 [
   {
-    "id": 1,
-    "name": "สมชาย ใจดี",
-    "position": "Software Engineer",
-    "salary": "55000"
-  },
-  {
     "id": 2,
     "name": "สมหญิง รักงาน",
     "position": "Product Manager",
@@ -46,11 +40,5 @@
     "name": "123",
     "position": "123",
     "salary": "123"
-  },
-  {
-    "id": 9,
-    "name": "",
-    "position": "",
-    "salary": ""
   }
 ]

@@ -1,26 +1,23 @@
-<%= form_with url: (@employee.persisted? ? employee_path(@employee) : employees_path),
-              method: (@employee.persisted? ? :patch : :post),
-              scope: :employee do |f| %>
-
+<form id="employee-form" class="space-y-6">
   <div class="form-control w-full mb-6">
-    <%= f.label :name, "ชื่อ", class: "label font-semibold text-slate-700" %>
+    <label class="label font-semibold text-slate-700">ชื่อ</label>
     <label class="input input-bordered bg-white flex items-center gap-2 focus-within:ring-2 focus-within:ring-blue-200">
-      <%= f.text_field :name, value: @employee.name, placeholder: "กรอกชื่อ", class: "grow" %>
+      <input type="text" name="employee[name]" value="<%= @employee.name %>" placeholder="กรอกชื่อ" class="grow" required>
     </label>
   </div>
 
   <div class="form-control w-full mb-6">
-    <%= f.label :position, "ตำแหน่ง", class: "label font-semibold text-slate-700" %>
+    <label class="label font-semibold text-slate-700">ตำแหน่ง</label>
     <label class="input input-bordered bg-white flex items-center gap-2 focus-within:ring-2 focus-within:ring-indigo-200">
-      <%= f.text_field :position, value: @employee.position, placeholder: "กรอกตำแหน่ง", class: "grow" %>
+      <input type="text" name="employee[position]" value="<%= @employee.position %>" placeholder="กรอกตำแหน่ง" class="grow" required>
     </label>
   </div>
 
   <div class="form-control w-full mb-8">
-    <%= f.label :salary, "เงินเดือน", class: "label font-semibold text-slate-700" %>
+    <label class="label font-semibold text-slate-700">เงินเดือน</label>
     <label class="input input-bordered bg-white flex items-center gap-2 focus-within:ring-2 focus-within:ring-emerald-200">
       <span>฿</span>
-      <%= f.number_field :salary, value: @employee.salary, placeholder: "0", class: "grow" %>
+      <input type="number" name="employee[salary]" value="<%= @employee.salary %>" placeholder="0" class="grow" required>
     </label>
   </div>
   <button type="submit" class="btn w-full btn-success">
